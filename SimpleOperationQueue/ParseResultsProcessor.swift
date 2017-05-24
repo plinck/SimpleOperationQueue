@@ -10,7 +10,14 @@ import Foundation
 
 class ParseResultsProcessor
 {
-    typealias ResultHandler = (String) -> Void
+    
+    enum Result {
+        case success(String)
+        case failure(NSError)
+        case cancelled
+    }
+
+    typealias ResultHandler = (Result) -> Void
 
     private let processingQueue: OperationQueue =
     {

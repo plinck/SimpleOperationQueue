@@ -27,15 +27,25 @@ class ViewController: UIViewController {
         let parseResultsProcessor = ParseResultsProcessor()
         
         parseResultsProcessor.process()
+        {
+            (result) in
+            var myMessage: String = ""
+            
+            switch result
             {
-                (resultString) in
-                
-                OperationQueue.main.addOperation {
-                    self.resultField.text = resultString
-                }
-        }
+            case let .success(myString):
+                myMessage = myString
+            case let .failure(error):
+                print("Error: failed to process: \(error)")
+                myMessage = error.localizedDescription
+            case .cancelled:
+                print("Cancelled")
+            }
+            OperationQueue.main.addOperation {
+                self.resultField.text = myMessage
+            }
         
+        }
     }
-    
 }
 

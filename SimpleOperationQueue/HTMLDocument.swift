@@ -10,9 +10,18 @@ import Foundation
 
 class HTMLDocument
 {
-    func parseHTML(htmlString: String) -> String
+    func parseHTML(htmlString: String) -> ParseResultsProcessor.Result
     {
-        print("Do parsing work here")
-        return("Done Parsing")
+        var result: ParseResultsProcessor.Result
+        
+        if true {
+            result = .success("Successful Parse")
+        }
+        else {
+            let err = NSError(domain: "SimpleOperationQueue", code: 401, userInfo: [:])
+            result = .failure(err)
+        }
+        return(result)
+
     }
 }

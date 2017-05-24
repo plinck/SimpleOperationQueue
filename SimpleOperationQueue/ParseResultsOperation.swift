@@ -27,19 +27,28 @@ class ParseResultsOperation: Operation
     
     override func main()
     {
-        var result: String = ""
+        var result: ParseResultsProcessor.Result
         
         result = perform(webQueryType: self.webQueryType, data: self.data, error: self.error)
         print("Main Results:\(result)")
         completion(result)
-
-        // now what?
     }
     
-    func perform(webQueryType: Int, data: Data?, error: Error?) -> String
+    func perform(webQueryType: Int, data: Data?, error: Error?) -> ParseResultsProcessor.Result
     {
+        // Dont run if cancelled
+        guard !isCancelled else {
+            return(.failure(NSError(domain: "Cancelled", code: 401, userInfo: [:])))
+        }
+
         let result = myHTMLDocument.parseHTML(htmlString: "<HI>Hello</HI>")
         print("results:\(result)")
         return(result)
     }
+    
+    override func cancel()
+    {
+        super.cancel()
+    }
+
 }
