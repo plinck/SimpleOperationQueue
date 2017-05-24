@@ -16,6 +16,11 @@ class ParseResultsProcessor
         case failure(NSError)
         case cancelled
     }
+    
+    enum Priority {
+        case high
+        case low
+    }
 
     typealias ResultHandler = (Result) -> Void
 
@@ -26,13 +31,15 @@ class ParseResultsProcessor
         return queue
     }()
     
-    func process(completion: @escaping ResultHandler)
+    func process(completion: @escaping ResultHandler) -> ParseResultsRequest
     {
         let data = Data()
         let error = NSError()
         
         let parseOp = ParseResultsOperation(webQueryType: 0, data: data, error: error, completion: completion)
-        
+        let request = ParseResultsRequest(operation: parseOp, queue: processingQueue)
         processingQueue.addOperation(parseOp)
+        
+        return(request)
     }
 }

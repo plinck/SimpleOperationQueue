@@ -16,7 +16,9 @@ class ParseResultsOperation: Operation
     let myHTMLDocument = HTMLDocument()
     let completion: ParseResultsProcessor.ResultHandler
     
-    init(webQueryType: Int, data: Data?, error: NSError?, completion: @escaping ParseResultsProcessor.ResultHandler)
+    init(webQueryType: Int, data: Data?, error: NSError?,
+         priority: ParseResultsProcessor.Priority = .low,
+         completion: @escaping ParseResultsProcessor.ResultHandler)
     {
         self.webQueryType = webQueryType
         self.data = data
@@ -25,12 +27,19 @@ class ParseResultsOperation: Operation
         super.init()
     }
     
+    convenience init(operation: ParseResultsOperation, priority: ParseResultsProcessor.Priority = .low)
+    {
+        self.init(webQueryType: operation.webQueryType, data: operation.data,
+                  error: operation.error,
+                  priority: priority, completion: operation.completion)
+    }
+
+    
     override func main()
     {
         var result: ParseResultsProcessor.Result
         
         result = perform(webQueryType: self.webQueryType, data: self.data, error: self.error)
-        print("Main Results:\(result)")
         completion(result)
     }
     
@@ -42,7 +51,6 @@ class ParseResultsOperation: Operation
         }
 
         let result = myHTMLDocument.parseHTML(htmlString: "<HI>Hello</HI>")
-        print("results:\(result)")
         return(result)
     }
     

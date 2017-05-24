@@ -15,6 +15,7 @@
 		DA7EE8E21ED517B700EFEF28 /* ParseResultsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7EE8DE1ED517B700EFEF28 /* ParseResultsOperation.swift */; };
 		DA7EE8E31ED517B700EFEF28 /* ParseResultsProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7EE8DF1ED517B700EFEF28 /* ParseResultsProcessor.swift */; };
 		DA7EE8E41ED517B800EFEF28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7EE8E01ED517B700EFEF28 /* ViewController.swift */; };
+		DA91FC871ED5D59F008AF6AB /* ParseResultsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA91FC861ED5D59F008AF6AB /* ParseResultsRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		DA7EE8DE1ED517B700EFEF28 /* ParseResultsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseResultsOperation.swift; sourceTree = "<group>"; };
 		DA7EE8DF1ED517B700EFEF28 /* ParseResultsProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseResultsProcessor.swift; sourceTree = "<group>"; };
 		DA7EE8E01ED517B700EFEF28 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DA91FC861ED5D59F008AF6AB /* ParseResultsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseResultsRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				DA7EE8DD1ED517B700EFEF28 /* HTMLDocument.swift */,
 				DA7EE8DE1ED517B700EFEF28 /* ParseResultsOperation.swift */,
 				DA7EE8DF1ED517B700EFEF28 /* ParseResultsProcessor.swift */,
+				DA91FC861ED5D59F008AF6AB /* ParseResultsRequest.swift */,
 				DA7EE8E01ED517B700EFEF28 /* ViewController.swift */,
 				DA7EE8DB1ED5177800EFEF28 /* Main.storyboard */,
 				DA7EE8C71ED5170A00EFEF28 /* AppDelegate.swift */,
@@ -150,6 +153,7 @@
 				DA7EE8E21ED517B700EFEF28 /* ParseResultsOperation.swift in Sources */,
 				DA7EE8C81ED5170A00EFEF28 /* AppDelegate.swift in Sources */,
 				DA7EE8E11ED517B700EFEF28 /* HTMLDocument.swift in Sources */,
+				DA91FC871ED5D59F008AF6AB /* ParseResultsRequest.swift in Sources */,
 				DA7EE8E31ED517B700EFEF28 /* ParseResultsProcessor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +312,7 @@
 				DA7EE8D81ED5170A00EFEF28 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

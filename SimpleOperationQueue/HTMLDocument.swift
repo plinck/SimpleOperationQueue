@@ -16,6 +16,8 @@ class HTMLDocument
         
         if true {
             result = .success("Successful Parse")
+            // delay to take some time in the task
+            sleep(3)
         }
         else {
             let err = NSError(domain: "SimpleOperationQueue", code: 401, userInfo: [:])
