@@ -12,9 +12,13 @@ class ViewController: UIViewController
 {
     var parseRequests: [UUID : ParseResultsRequest] = [:]
     
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var runButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        initButtonState()
     }
     
     override func didReceiveMemoryWarning() {
@@ -26,10 +30,14 @@ class ViewController: UIViewController
     
     @IBAction func runAsyncTask(_ sender: UIButton)
     {
+        self.runButton.isEnabled = false
+        self.cancelButton.isEnabled = true
+        self.resultField.text = "Stand back while I get to some parsin'"
+        
+        let parseResultsProcessor = ParseResultsProcessor()
+
         for i in 0...100
         {
-            let parseResultsProcessor = ParseResultsProcessor()
-            
             let parseRequestId = UUID()
             let parseRequest = parseResultsProcessor.process()
             {
@@ -40,13 +48,17 @@ class ViewController: UIViewController
                 {
                 case let .success(myString):
                     myMessage = myString
+                    
                 case let .failure(error):
                     print("Error: failed to process: \(error)")
                     myMessage = error.localizedDescription
+                    
                 case .cancelled:
                     print("Cancelled")
+                    
                 }
-                OperationQueue.main.addOperation {
+//                OperationQueue.main.addOperation {
+                DispatchQueue.main.async {
                     self.resultField.text = myMessage + ":" + String(i)
                     // Stop tracking once it is complete
                     self.parseRequests[parseRequestId] = nil
@@ -59,14 +71,28 @@ class ViewController: UIViewController
     
     @IBAction func cancelAllTasks(_ sender: UIButton)
     {
-        var i = 0
-        for parseRequest in parseRequests.values {
-            parseRequest.cancel()
-            i += 1
+//        var i = 0
+//        for parseRequest in parseRequests.values {
+//            parseRequest.cancel()
+//            i += 1
+//        }
+        
+        for (index, request) in parseRequests.values.enumerated() {
+            request.cancel()
+            print("Cancelling request:\(index)")
         }
-        self.parseRequests.removeAll()
-        print("Cancelled:\(i) requests")
-    }
 
+        print("Cancelled:\(parseRequests.values.count) requests")
+        self.parseRequests.removeAll()
+        
+        initButtonState()
+    }
+    
+    private func initButtonState() {
+        self.resultField.text = "Tap 'Run' to start processing"
+        self.cancelButton.isEnabled = false
+        self.runButton.isEnabled = true
+    }
+    
 }
 

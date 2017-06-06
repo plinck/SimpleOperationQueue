@@ -48,7 +48,9 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="eKs-wB-c4G" id="moI-t2-iYn"/>
                         <outlet property="resultField" destination="f3j-s5-dpc" id="4Cb-Tr-nBg"/>
+                        <outlet property="runButton" destination="665-wD-g98" id="0Mx-Gf-vFv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -47,10 +47,17 @@ class ParseResultsOperation: Operation
     {
         // Dont run if cancelled
         guard !isCancelled else {
-            return(.failure(NSError(domain: "Cancelled", code: 401, userInfo: [:])))
+            //return(.failure(NSError(domain: "Cancelled", code: 401, userInfo: [:])))
+            return(.cancelled)
         }
 
         let result = myHTMLDocument.parseHTML(htmlString: "<HI>Hello</HI>")
+        
+        guard !isCancelled else {
+            //return(.failure(NSError(domain: "Cancelled", code: 401, userInfo: [:])))
+            return(.cancelled)
+        }
+
         return(result)
     }
     
